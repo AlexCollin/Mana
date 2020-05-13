@@ -1,5 +1,5 @@
-defmodule AdminWeb.PageControllerTest do
-  use AdminWeb.ConnCase
+defmodule Admin.PageControllerTest do
+  use Admin.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")

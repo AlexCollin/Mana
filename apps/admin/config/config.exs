@@ -11,10 +11,10 @@ config :admin,
   ecto_repos: [Admin.Repo]
 
 # Configures the endpoint
-config :admin, AdminWeb.Endpoint,
+config :admin, Admin.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "BawUwRDJJmZbxtP2gslqTBXPCm0KbZRpRCCsDwKnQD8nTzqLjOEVA2GkHwqLlkSD",
-  render_errors: [view: AdminWeb.ErrorView, accepts: ~w(html json), layout: false],
+  render_errors: [view: Admin.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Admin.PubSub,
   live_view: [signing_salt: "MAIko8Xh"]
 

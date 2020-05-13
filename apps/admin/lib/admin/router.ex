@@ -1,5 +1,5 @@
-defmodule AdminWeb.Router do
-  use AdminWeb, :router
+defmodule Admin.Router do
+  use Admin, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -13,14 +13,14 @@ defmodule AdminWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", AdminWeb do
+  scope "/", Admin do
     pipe_through :browser
 
     get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", AdminWeb do
+  # scope "/api", Admin do
   #   pipe_through :api
   # end
 
@@ -36,7 +36,7 @@ defmodule AdminWeb.Router do
 
     scope "/" do
       pipe_through :browser
-      live_dashboard "/dashboard", metrics: AdminWeb.Telemetry
+      live_dashboard "/dashboard", metrics: Admin.Telemetry
     end
   end
 end

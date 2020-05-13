@@ -1,3 +1,3 @@
-defmodule AdminWeb.PageViewTest do
-  use AdminWeb.ConnCase, async: true
+defmodule Admin.PageViewTest do
+  use Admin.ConnCase, async: true
 end

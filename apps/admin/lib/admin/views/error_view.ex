@@ -1,5 +1,5 @@
-defmodule AdminWeb.ErrorView do
-  use AdminWeb, :view
+defmodule Admin.ErrorView do
+  use Admin, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

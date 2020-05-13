@@ -1,4 +1,4 @@
-defmodule AdminWeb.Telemetry do
+defmodule Admin.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
@@ -47,7 +47,7 @@ defmodule AdminWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {AdminWeb, :count_users, []}
+      # {Admin, :count_users, []}
     ]
   end
 end

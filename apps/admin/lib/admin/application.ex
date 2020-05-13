@@ -10,11 +10,11 @@ defmodule Admin.Application do
       # Start the Ecto repository
       Admin.Repo,
       # Start the Telemetry supervisor
-      AdminWeb.Telemetry,
+      Admin.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: Admin.PubSub},
       # Start the Endpoint (http/https)
-      AdminWeb.Endpoint
+      Admin.Endpoint
       # Start a worker by calling: Admin.Worker.start_link(arg)
       # {Admin.Worker, arg}
     ]
@@ -28,7 +28,7 @@ defmodule Admin.Application do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    AdminWeb.Endpoint.config_change(changed, removed)
+    Admin.Endpoint.config_change(changed, removed)
     :ok
   end
 end

@@ -15,7 +15,7 @@ config :admin, Admin.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :admin, AdminWeb.Endpoint,
+config :admin, Admin.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -55,13 +55,13 @@ config :admin, AdminWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :admin, AdminWeb.Endpoint,
+config :admin, Admin.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/admin_web/(live|views)/.*(ex)$",
-      ~r"lib/admin_web/templates/.*(eex)$"
+      ~r"lib/admin/(live|views)/.*(ex)$",
+      ~r"lib/admin/templates/.*(eex)$"
     ]
   ]
 
