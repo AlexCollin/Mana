@@ -7,8 +7,8 @@ defmodule Admin.Application do
 
   def start(_type, _args) do
     children = [
-      # Start the Ecto repository
-      Admin.Repo,
+      # # Start the Ecto repository
+      # Admin.Repo,
       # Start the Telemetry supervisor
       Admin.Telemetry,
       # Start the PubSub system

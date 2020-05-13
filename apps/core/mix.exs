@@ -25,8 +25,6 @@ defmodule Core.MixProject do
 
   defp deps do
     [
-      {:datasets, in_umbrella: true},
-
       {:bcrypt_elixir, "~> 0.12"},
       {:comeonin, "~> 4.1"},
       {:ecto, "~> 3.4.4"},

@@ -8,7 +8,10 @@
 use Mix.Config
 
 config :admin,
-  ecto_repos: [Admin.Repo]
+  namespace: Admin
+
+# config :admin,
+#   ecto_repos: [Core.Repo]
 
 # Configures the endpoint
 config :admin, Admin.Endpoint,

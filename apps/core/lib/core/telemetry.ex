@@ -1,4 +1,4 @@
-defmodule Admin.Telemetry do
+defmodule Core.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
@@ -19,14 +19,12 @@ defmodule Admin.Telemetry do
 
   def metrics do
     [
-      # Phoenix Metrics
-      summary("phoenix.endpoint.stop.duration",
-        unit: {:native, :millisecond}
-      ),
-      summary("phoenix.router_dispatch.stop.duration",
-        tags: [:route],
-        unit: {:native, :millisecond}
-      ),
+      # Database Metrics
+      summary("admin.repo.query.total_time", unit: {:native, :millisecond}),
+      summary("admin.repo.query.decode_time", unit: {:native, :millisecond}),
+      summary("admin.repo.query.query_time", unit: {:native, :millisecond}),
+      summary("admin.repo.query.queue_time", unit: {:native, :millisecond}),
+      summary("admin.repo.query.idle_time", unit: {:native, :millisecond}),
 
       # VM Metrics
       summary("vm.memory.total", unit: {:byte, :kilobyte}),
