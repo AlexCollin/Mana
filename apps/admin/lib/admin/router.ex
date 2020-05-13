@@ -16,7 +16,7 @@ defmodule Admin.Router do
   scope "/", Admin do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", MainController, :index
   end
 
   # Other scopes may use custom stacks.
