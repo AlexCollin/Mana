@@ -3,9 +3,9 @@ use Mix.Config
 # Configure your database
 config :admin, Admin.Repo,
   username: "postgres",
-  password: "postgres",
-  database: "admin_dev",
-  hostname: "localhost",
+  password: "",
+  database: "mana_dev",
+  hostname: "10.0.1.100",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 

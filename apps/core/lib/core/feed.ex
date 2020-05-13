@@ -3,7 +3,7 @@ defmodule Core.Feed do
   Functions for working with user's posts.
   """
 
-  alias Core.Accounts.User
+  # alias Core.Accounts.User
   alias Core.Feed.Post
   alias Core.Repo
 
