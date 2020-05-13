@@ -19,12 +19,8 @@ erl_crash.dump
 # Also ignore archive artifacts (built via "mix archive.build").
 *.ez
 
-# Files matching the following pattern may contain sensitive data.
-**/config/*.secret.exs
-
-
 # Ignore package tarball (built via "mix hex.build").
-*-*.tar
+admin-*.tar
 
 # If NPM crashes, it generates a log, let's ignore it too.
 npm-debug.log
@@ -36,17 +32,3 @@ npm-debug.log
 # we ignore priv/static. You may want to comment
 # this depending on your deployment strategy.
 /priv/static/
-
-# Mac files
-.DS_STORE
-
-# IDEA
-pxblog.iml
-/.idea
-
-# VSCode
-/.vscode
-/.elixir_ls
-assets/package-lock.json
-
-cover

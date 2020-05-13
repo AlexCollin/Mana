@@ -30,8 +30,8 @@ defmodule Api.Mixfile do
   defp deps do
     [
       {:core, in_umbrella: true},
-      {:cowboy, "~> 1.0"},
-      {:phoenix, "~> 1.3.4"}
+      {:cowboy, "~> 1.1.2"},
+      {:phoenix, "~> 1.5.1"}
     ]
   end
 end

@@ -26,10 +26,10 @@ defmodule Core.MixProject do
   defp deps do
     [
       {:bcrypt_elixir, "~> 0.12"},
-      {:comeonin, "~> 4.0"},
-      {:ecto, "~> 2.2"},
-      {:poison, "~> 3.0"},
-      {:postgrex, "~> 0.13"}
+      {:comeonin, "~> 4.1"},
+      {:ecto, ">= 0.0.0"},
+      {:poison, "~> 3.1"},
+      {:postgrex, ">= 0.0.0"},
     ]
   end
 

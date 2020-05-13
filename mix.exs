@@ -1,4 +1,4 @@
-defmodule SampleApp.MixProject do
+defmodule Mana.MixProject do
   use Mix.Project
 
   def project do
