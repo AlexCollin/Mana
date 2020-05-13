@@ -36,7 +36,7 @@ defmodule Admin.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:core, in_umbrella: true},
+      {:datasets, in_umbrella: true},
 
       {:phoenix, "~> 1.5.1"},
       {:phoenix_html, "~> 2.14"},
