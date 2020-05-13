@@ -26,7 +26,6 @@ defmodule Main.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:datasets, in_umbrella: true},
       {:core, in_umbrella: true},
       {:admin, in_umbrella: true},
       {:api, in_umbrella: true},

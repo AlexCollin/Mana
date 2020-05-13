@@ -29,7 +29,7 @@ defmodule Api.Mixfile do
 
   defp deps do
     [
-      {:datasets, in_umbrella: true},
+      {:core, in_umbrella: true},
 
       {:phoenix, "~> 1.5.1"},
       {:phoenix_ecto, "~> 4.1"},
