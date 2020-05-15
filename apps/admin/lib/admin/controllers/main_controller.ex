@@ -1,4 +1,4 @@
-defmodule Admin.PageController do
+defmodule Admin.MainController do
   use Admin, :controller
 
   def index(conn, _params) do
