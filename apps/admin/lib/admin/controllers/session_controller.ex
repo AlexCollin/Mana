@@ -4,6 +4,8 @@ defmodule Admin.SessionController do
   alias Core.Users.User
   alias Core.Repo
 
+  plug :put_layout, "login.html"
+
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
 
   plug :scrub_params, "user" when action in [:create]

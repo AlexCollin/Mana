@@ -1,6 +1,6 @@
 <ul class="nav">
 
-  <li class="nav-item active ">
+  <li class="nav-item <%= if Phoenix.Controller.current_path(@conn, %{}) == "/" do "active" end%>">
     <a class="nav-link" href="/">
       <i class="material-icons">dashboard</i>
       <p>Главная</p>
@@ -14,7 +14,7 @@
     <% end %>
     </li>
   <% else %>
-   <li class="nav-item">
+   <li class="nav-item <%= if Phoenix.Controller.current_path(@conn, %{}) == "/login" do "active" end%>">
    <%= link to: Routes.session_path(@conn, :new), class: "nav-link" do %>
       <i class="material-icons">assignment_ind</i>
       <p>Вход</p>
@@ -22,6 +22,5 @@
     </li>
   <% end %>
 
-  <!-- your sidebar here -->
 </ul>
 
