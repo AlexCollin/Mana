@@ -1,6 +1,6 @@
 <ul class="nav">
 
-  <li class="nav-item active  ">
+  <li class="nav-item active ">
     <a class="nav-link" href="/">
       <i class="material-icons">dashboard</i>
       <p>Главная</p>
@@ -8,13 +8,17 @@
   </li>
   <%= if current_user = @conn.assigns[:current_user] do %>
     <li class="nav-item">
-      <i class='material-icons'>dashboard</i>
-      <%= link "Выход", to: Routes.session_path(@conn, :delete, current_user.id), method: :delete, class: "nav-link" %>
+    <%= link to: Routes.session_path(@conn, :delete, current_user.id), method: :delete, class: "nav-link" do %>
+      <i class="material-icons">directions_run</i>
+      <p>Выход</p>
+    <% end %>
     </li>
   <% else %>
-    <li class="nav-item">
-      <i class='material-icons'>dashboard</i>
-      <%= link "Вход", to: Routes.session_path(@conn, :new), class: "nav-link" %>
+   <li class="nav-item">
+   <%= link to: Routes.session_path(@conn, :new), class: "nav-link" do %>
+      <i class="material-icons">assignment_ind</i>
+      <p>Вход</p>
+    <% end %>
     </li>
   <% end %>
 

@@ -2,7 +2,7 @@
 <html lang="en">
   <%= render "head.html", conn: @conn %>
   <body>
-  <div class="wrapper ">
+  <div class="wrapper">
     <div class="sidebar" data-color="purple" data-background-color="white">
       <div class="logo">
         <a href="http://www.creative-tim.com" class="simple-text logo-mini">
@@ -43,43 +43,9 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="container-fluid">
-          <!-- your content here -->
-        </div>
-      </div>
-      <footer class="footer">
-        <div class="container-fluid">
-          <nav class="float-left">
-            <ul>
-              <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright float-right">
-            &copy;
-            <script>
-              document.write(new Date().getFullYear())
-            </script>, made with <i class="material-icons">favorite</i> by
-            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
-          </div>
-          <!-- your footer here -->
-        </div>
-      </footer>
-    </div>
-  </div>
-    <%= render "navigation.html", conn: @conn %>
-
-    <section class="main-content row expanded">
-      <%= render "alerts.html", conn: @conn %>
-
-      <div class="row content">
         <%= @inner_content %>
       </div>
-    </section>
-
+    </div>
     <%= render "script.html", conn: @conn %>
   </body>
 </html>
