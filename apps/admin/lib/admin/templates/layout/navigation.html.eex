@@ -1,26 +1,23 @@
-<div class="top-bar">
-  <div class="top-bar-left">
-    <ul class="menu">
-      <li class="logo">
-        Alex Collin - Blog
-      </li>
-      <li>
-        <%= link "Home", to: Routes.main_path(@conn, :index) %>
-      </li>
-    </ul>
-  </div>
-  <div class="top-bar-right">
-    <ul class="menu">
-        <%= if current_user = @conn.assigns[:current_user] do %>
-          <li>
-            <%= link "Logout", to: Routes.session_path(@conn, :delete, current_user.id), method: :delete, class: "button alert" %>
-          </li>
-        <% else %>
-          <li>
-            <%= link "Login", to: Routes.session_path(@conn, :new), class: "button" %>
-          </li>
-        <% end %>
-      </li>
-    </ul>
-  </div>
-</div>
+<ul class="nav">
+
+  <li class="nav-item active  ">
+    <a class="nav-link" href="/">
+      <i class="material-icons">dashboard</i>
+      <p>Главная</p>
+    </a>
+  </li>
+  <%= if current_user = @conn.assigns[:current_user] do %>
+    <li class="nav-item">
+      <i class='material-icons'>dashboard</i>
+      <%= link "Выход", to: Routes.session_path(@conn, :delete, current_user.id), method: :delete, class: "nav-link" %>
+    </li>
+  <% else %>
+    <li class="nav-item">
+      <i class='material-icons'>dashboard</i>
+      <%= link "Вход", to: Routes.session_path(@conn, :new), class: "nav-link" %>
+    </li>
+  <% end %>
+
+  <!-- your sidebar here -->
+</ul>
+

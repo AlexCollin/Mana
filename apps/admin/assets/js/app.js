@@ -1,10 +1,6 @@
-
-import "phoenix_html"
-
-import socket from "./socket"
-
+import "jquery"
 import "arrive"
-import "bootstrap-datetimepicker"
+// import "bootstrap-datetimepicker"
 import "bootstrap-notify"
 import "bootstrap-select"
 import "bootstrap-tagsinput"
@@ -13,12 +9,17 @@ import "fullcalendar"
 import "jasny-bootstrap"
 import "jvectormap"
 import "jquery-bootstrap-wizard"
-import "jquery-tags-input"
+// import "jquery-tags-input"
 import "jquery-validation"
 import "moment"
 import "nouislider"
 import "perfect-scrollbar"
 import "sweetalert2"
+
+import "phoenix_html"
+import "./socket"
+
+var $sidebar = $;
 
 (function() {
   var isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
@@ -58,7 +59,7 @@ $(document).ready(function() {
 
   $('body').bootstrapMaterialDesign();
 
-  var $sidebar = $('.sidebar');
+  $sidebar = $('.sidebar');
 
   md.initSidebarsCheck();
 
@@ -91,7 +92,7 @@ $(document).ready(function() {
 });
 
 $(document).on('click', '.navbar-toggler', function() {
-  $toggle = $(this);
+  var $toggle = $(this);
 
   if (mobile_menu_visible == 1) {
     $('html').removeClass('nav-open');
@@ -164,7 +165,7 @@ var md = {
     var image_src = $sidebar.data('image');
 
     if (image_src !== undefined) {
-      sidebar_container = '<div class="sidebar-background" style="background-image: url(' + image_src + ') "/>';
+      $sidebar = '<div class="sidebar-background" style="background-image: url(' + image_src + ') "/>';
       $sidebar.append(sidebar_container);
     }
   },
@@ -453,26 +454,32 @@ var md = {
 
 
   initRightMenu: debounce(function() {
-    $sidebar_wrapper = $('.sidebar-wrapper');
+    var sidebar_wrapper = $('.sidebar-wrapper');
 
     if (!mobile_menu_initialized) {
-      $navbar = $('nav').find('.navbar-collapse').children('.navbar-nav');
+      var $navbar = $('nav').find('.navbar-collapse').children('.navbar-nav');
 
-      mobile_menu_content = '';
+      var mobile_menu_content = '';
 
-      nav_content = $navbar.html();
+      var nav_content = $navbar.html();
 
       nav_content = '<ul class="nav navbar-nav nav-mobile-menu">' + nav_content + '</ul>';
 
-      navbar_form = $('nav').find('.navbar-form').get(0).outerHTML;
+      var navbar_form = $('nav').find('.navbar-form')
+      
+      navbar_form = navbar_form.get(0)
 
-      $sidebar_nav = $sidebar_wrapper.find(' > .nav');
+      if (navbar_form != null) {
+        navbar_form = navbar_form.outerHTML;
+      }
+
+      var sidebar_nav = sidebar_wrapper.find(' > .nav');
 
       // insert the navbar form before the sidebar list
-      $nav_content = $(nav_content);
-      $navbar_form = $(navbar_form);
-      $nav_content.insertBefore($sidebar_nav);
-      $navbar_form.insertBefore($nav_content);
+      nav_content = $(nav_content);
+      navbar_form = $(navbar_form);
+      nav_content.insertBefore(sidebar_nav);
+      navbar_form.insertBefore(nav_content);
 
       $(".sidebar-wrapper .dropdown .dropdown-menu > li > a").click(function(event) {
         event.stopPropagation();
@@ -486,8 +493,8 @@ var md = {
     } else {
       if ($(window).width() > 991) {
         // reset all the additions that we made for the sidebar wrapper only if the screen is bigger than 991px
-        $sidebar_wrapper.find('.navbar-form').remove();
-        $sidebar_wrapper.find('.nav-mobile-menu').remove();
+        sidebar_wrapper.find('.navbar-form').remove();
+        sidebar_wrapper.find('.nav-mobile-menu').remove();
 
         mobile_menu_initialized = false;
       }

@@ -1,7 +1,8 @@
+import "jquery"
 // Import the socket library
 import {Socket} from "phoenix"
 // And import jquery for DOM manipulation
-import $ from "jquery"
+// import $ from "jquery"
 
 // Grab the user's token from the meta tag
 const userToken = $("meta[name='channel_token']").attr("content")
