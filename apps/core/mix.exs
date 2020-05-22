@@ -30,6 +30,9 @@ defmodule Core.MixProject do
       {:ecto, "~> 3.4.4"},
       {:poison, "~> 3.1"},
       {:postgrex, "~> 0.15"},
+      {:ecto_sql, "~> 3.4"},
+      {:telemetry_metrics, "~> 0.4"},
+      {:telemetry_poller, "~> 0.4"},
     ]
   end
 

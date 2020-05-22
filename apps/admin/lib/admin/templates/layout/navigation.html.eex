@@ -1,0 +1,26 @@
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="menu">
+      <li class="logo">
+        Alex Collin - Blog
+      </li>
+      <li>
+        <%= link "Home", to: Routes.main_path(@conn, :index) %>
+      </li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu">
+        <%= if current_user = @conn.assigns[:current_user] do %>
+          <li>
+            <%= link "Logout", to: Routes.session_path(@conn, :delete, current_user.id), method: :delete, class: "button alert" %>
+          </li>
+        <% else %>
+          <li>
+            <%= link "Login", to: Routes.session_path(@conn, :new), class: "button" %>
+          </li>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>

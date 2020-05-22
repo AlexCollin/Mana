@@ -4,9 +4,7 @@ defmodule Core.Repo.Migrations.CreateUsers do
   def change do
     create table(:users) do
       add(:email, :string, null: false)
-      add(:password_hash, :string)
-      add(:first_name, :string)
-      add(:last_name, :string)
+      add(:password_digest, :string)
 
       timestamps()
     end

@@ -17,6 +17,10 @@ defmodule Admin.Router do
     pipe_through :browser
 
     get "/", MainController, :index
+
+    get "/login", SessionController, :new
+
+    resources "/sessions", SessionController, only: [:create, :delete]
   end
 
   # Other scopes may use custom stacks.
