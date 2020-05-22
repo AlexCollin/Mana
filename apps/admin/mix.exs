@@ -37,7 +37,6 @@ defmodule Admin.MixProject do
   defp deps do
     [
       {:core, in_umbrella: true},
-
       {:phoenix, "~> 1.5.1"},
       {:phoenix_html, "~> 2.14"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
@@ -50,6 +49,7 @@ defmodule Admin.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
+      {:font_awesomex, "~> 4.0"}
     ]
   end
 end

@@ -1,0 +1,42 @@
+<footer class="footer">
+    <div class="container">
+        <nav class="float-left">
+            <ul>
+              <li>
+                <a href="https://alexcollin.ru">
+                 <%=  FontAwesome.icon(:home, size: 2) %>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/AlexCollin">
+                 <%=  FontAwesome.icon(:github, size: 2) %>
+                </a>
+              </li>
+              <li>
+                <a href="https://stackoverflow.com/users/6947824/alex-collin">
+                <%=  FontAwesome.icon(:stack_overflow, size: 2) %>
+                </a>
+              </li>
+              <li>
+                <a href="https://career.habr.com/alexcollin">
+                    <img src="<%= Routes.static_path(@conn, "/images/hbr.png") %>">
+                </a>
+                </a>
+              </li>
+              <li>
+                <%= link to: Routes.main_path(@conn, :index) do %>
+                    <%=  FontAwesome.icon(:phone, size: 2) %>
+                <% end %>
+                </a>
+              </li>
+            </ul>
+        </nav>
+        <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, made with <i class="material-icons">favorite</i> by
+            <a href="https://alexcollin.ru" target="_blank">Alex Collin</a> for a better web.
+        </div>
+    </div>
+</footer>
