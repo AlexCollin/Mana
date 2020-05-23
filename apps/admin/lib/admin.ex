@@ -23,6 +23,7 @@ defmodule Admin do
 
       import Plug.Conn
       import Admin.Gettext
+
       alias Admin.Router.Helpers, as: Routes
     end
   end

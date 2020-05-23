@@ -5,6 +5,7 @@ defmodule Admin.SessionController do
   alias Core.Repo
 
   plug :put_layout, "login.html"
+  plug :authorize_user
 
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
 
@@ -49,11 +50,28 @@ defmodule Admin.SessionController do
 
   defp failed_login(conn) do
     dummy_checkpw()
+    IO.puts(inspect(conn))
     conn
     |> put_session(:current_user, nil)
     |> put_flash(:error, "Invalid username/password combination!")
     |> redirect(to: Routes.session_path(conn, :new))
     |> halt()
+  end
+
+  defp is_authorized_user?(conn) do
+    user = get_session(conn, :current_user)
+    (user && (Integer.to_string(user.id) == conn.params["user_id"] || Core.RoleChecker.is_admin?(user)))
+  end
+
+  defp authorize_user(conn, _opts) do
+    if is_authorized_user?(conn) do
+      conn
+      |> put_flash(:info, "You already signin!")
+      |> redirect(to: Routes.main_path(conn, :index))
+      |> halt
+    else
+      conn
+    end
   end
 
 end

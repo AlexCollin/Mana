@@ -1,46 +1,41 @@
 
-<%= form_for @changeset, @action, fn f -> %>
-  <div class="card card-login card-hidden">
-    <div class="card-header card-header-rose text-center">
-      <img src="/images/yoga.png" width="72px" style="margin-top: 10px;">
-      <h4 class="card-title">YogaData</h4>
+
+<div class="card card-login card-hidden">
+  <div class="card-header card-header-rose text-center">
+    <img src="/images/yoga.png" width="72px" style="margin-top: 10px;">
+    <h4 class="card-title">YogaData</h4>
+  </div>
+  <%= if flash = get_flash(@conn, :error) do %>
+    <div class="alert alert-danger">
+      <%= flash %>
     </div>
-    <div class="card-body ">
-      <%= if f.errors != [] do %>
-        <div class="alert alert-danger">
-          <p>Oops, something went wrong! Please check the errors below:</p>
-          <ul>
-            <%= for {attr, message} <- f.errors do %>
-              <li><%= humanize(attr) %> <%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <span class="bmd-form-group">
-        <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">
-                <i class="material-icons">email</i>
-              </span>
-            </div>
-          <%= text_input f, :email, class: "form-control", placeholder: "Email..." %>
-        </div>
-      </span>
-
-      <span class="bmd-form-group">
-        <div class="input-group">
+  <% end %>
+  <div class="card-body">
+    <%= form_for @changeset, @action, fn f -> %>
+    <span class="bmd-form-group">
+      <div class="input-group">
           <div class="input-group-prepend">
             <span class="input-group-text">
-              <i class="material-icons">lock_outline</i>
+              <i class="material-icons">email</i>
             </span>
           </div>
-          <%= password_input f, :password, class: "form-control", placeholder: "Password..." %>
+        <%= text_input f, :email, class: "form-control", placeholder: "Email..." %>
+      </div>
+    </span>
+
+    <span class="bmd-form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="material-icons">lock_outline</i>
+          </span>
         </div>
-      </span>
-    </div>
-    <div class="card-footer justify-content-center">
-      <%= submit "Lets Go", class: "btn btn-rose btn-link btn-lg" %>
-    </div>
+        <%= password_input f, :password, class: "form-control", placeholder: "Password..." %>
+      </div>
+    </span>
   </div>
-<% end %>
+  <div class="card-footer justify-content-center">
+    <%= submit "Lets Go", class: "btn btn-rose btn-link btn-lg" %>
+  </div>
+  <% end %>
+</div>

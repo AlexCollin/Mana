@@ -42,6 +42,8 @@
         </div>
       </nav>
       <!-- End Navbar -->
+      <%= render "alerts.html", conn: @conn %>
+
       <div class="content">
         <%= @inner_content %>
       </div>
