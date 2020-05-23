@@ -1,28 +1,5 @@
 import css from "../css/app.scss"
 
-import "jquery"
-import "popper.js"
-import "bootstrap-material-design"
-import "arrive"
-import "bootstrap-datetimepicker"
-import "bootstrap-notify"
-import "bootstrap-select"
-import "bootstrap-tagsinput"
-import "chartist"
-import "fullcalendar"
-import "jasny-bootstrap"
-import "jvectormap"
-import "jquery-bootstrap-wizard"
-// import "jquery-tags-input"
-import "jquery-validation"
-import "moment"
-import "nouislider"
-import "perfect-scrollbar"
-import "sweetalert2"
-
 import "phoenix_html"
+
 import "./socket"
-
-import "../vendor/demo"
-
-import "./material-dashboard"

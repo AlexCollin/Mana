@@ -1,6 +1,7 @@
-import "jquery"
 // Import the socket library
 import {Socket} from "phoenix"
+// And import jquery for DOM manipulation
+import $ from "jquery"
 // And import jquery for DOM manipulation
 // import $ from "jquery"
 
