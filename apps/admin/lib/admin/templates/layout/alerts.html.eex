@@ -1,14 +1,14 @@
-
-
-
  <%= if flash = get_flash(@conn, :info) do %>
-    <div class="success callout alert-info" role="alert">
-      <%= flash %>
-    </div>
+      <script>
+        message = '<%= flash %>'
+        showNotification("success",message)
+      </script>
   <% end %>
 
   <%= if flash = get_flash(@conn, :error) do %>
-    <div class="alert callout alert-error" role="alert">
-      <%= flash %>
-    </div>
+      <script>
+        message = '<%= flash %>'
+        showNotification("danger",message)
+      </script>
   <% end %>
+
