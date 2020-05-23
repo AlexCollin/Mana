@@ -1,11 +1,11 @@
 <div class="user">
     <div class="photo">
-        <img src="images/faces/avatar.jpg" />
+        <%= raw Idicon.create(@conn.assigns[:current_user].email, color: {255,255,255}, size: 35) %>
     </div>
     <div class="user-info">
         <a data-toggle="collapse" href="#collapseExample" class="username">
             <span>
-            Tania Andrew
+            <%= @conn.assigns[:current_user].email %>
             <b class="caret"></b>
             </span>
         </a>

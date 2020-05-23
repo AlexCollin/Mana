@@ -12,6 +12,7 @@
   "file_system": {:hex, :file_system, "0.2.8", "f632bd287927a1eed2b718f22af727c5aeaccc9a98d8c2bd7bff709e851dc986", [:mix], [], "hexpm", "97a3b6f8d63ef53bd0113070102db2ce05352ecf0d25390eb8d747c2bde98bca"},
   "font_awesomex": {:hex, :font_awesomex, "4.0.0", "8f2c6d3bbb02b19267ea87f230a252bca5a1d1b23e3a2c514f3f50a13854eb0a", [:mix], [{:phoenix_html, "~> 2.6", [hex: :phoenix_html, repo: "hexpm", optional: false]}], "hexpm", "750c0c23c7c4c6089e0ce60f1d42648f69aa41b1711495b6d577fcb1fee39303"},
   "gettext": {:hex, :gettext, "0.18.0", "406d6b9e0e3278162c2ae1de0a60270452c553536772167e2d701f028116f870", [:mix], [], "hexpm", "c3f850be6367ebe1a08616c2158affe4a23231c70391050bf359d5f92f66a571"},
+  "idicon": {:hex, :idicon, "0.2.1", "ce77f3c1b588313a97f3f3d0744c6df88bc3035072254e8e19ca8bfa16a25b51", [:mix], [], "hexpm", "f542672bed9f7422e4a4885026666bbc1fd2364fbf781e38bc7fbb1433c785e4"},
   "jason": {:hex, :jason, "1.2.1", "12b22825e22f468c02eb3e4b9985f3d0cb8dc40b9bd704730efa11abd2708c44", [:mix], [{:decimal, "~> 1.0", [hex: :decimal, repo: "hexpm", optional: true]}], "hexpm", "b659b8571deedf60f79c5a608e15414085fa141344e2716fbd6988a084b5f993"},
   "mime": {:hex, :mime, "1.3.1", "30ce04ab3175b6ad0bdce0035cba77bba68b813d523d1aac73d9781b4d193cf8", [:mix], [], "hexpm", "6cbe761d6a0ca5a31a0931bf4c63204bceb64538e664a8ecf784a9a6f3b875f1"},
   "octicons": {:hex, :octicons, "0.8.0", "dc69c59bffbfd77577cfe92ab469bca39dd5b6df09b54356fda9d0c949014ae3", [:mix], [], "hexpm", "1571c2a9ac318504cbaab1224181e7a160fe457ad5e5bb7fd9b6b880c82eeb2d"},

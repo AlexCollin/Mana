@@ -4,4 +4,3 @@ import "phoenix_html"
 
 import "./socket"
 
-import $ from "jquery"

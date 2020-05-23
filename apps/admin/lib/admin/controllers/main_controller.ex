@@ -1,6 +1,7 @@
 defmodule Admin.MainController do
   use Admin, :controller
 
+
   plug :authorize_user
   plug :set_authorization_flag
 
@@ -17,7 +18,6 @@ defmodule Admin.MainController do
   defp authorize_user(conn, _opts) do
     if is_authorized_user?(conn) do
       conn
-      |> put_flash(:error, "You are not authorized to modify that post!")
     else
       conn
       |> put_flash(:error, "You are not authorized to modify that post!")

@@ -5,11 +5,6 @@
     <img src="/images/yoga.png" width="72px" style="margin-top: 10px;">
     <h4 class="card-title">YogaData</h4>
   </div>
-  <%= if flash = get_flash(@conn, :error) do %>
-    <div class="alert alert-danger">
-      <%= flash %>
-    </div>
-  <% end %>
   <div class="card-body">
     <%= form_for @changeset, @action, fn f -> %>
     <span class="bmd-form-group">

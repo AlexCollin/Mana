@@ -23,7 +23,7 @@ defmodule Admin.MixProject do
   def application do
     [
       mod: {Admin.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :idicon]
     ]
   end
 
@@ -49,7 +49,8 @@ defmodule Admin.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
-      {:font_awesomex, "~> 4.0"}
+      {:font_awesomex, "~> 4.0"},
+      {:idicon, "~> 0.2"}
     ]
   end
 end
