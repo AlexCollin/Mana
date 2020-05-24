@@ -50,7 +50,9 @@ defmodule Admin.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:font_awesomex, "~> 4.0"},
-      {:idicon, "~> 0.2"}
+      {:idicon, "~> 0.2"},
+      {:inflex, "~> 1.7.0" },
+      {:html_sanitize_ex, "~> 1.0.0"}
     ]
   end
 end

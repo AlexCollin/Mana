@@ -25,6 +25,7 @@ defmodule Admin do
       import Admin.Gettext
 
       alias Admin.Router.Helpers, as: Routes
+
     end
   end
 

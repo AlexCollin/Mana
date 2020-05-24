@@ -1,31 +1,36 @@
 defmodule Core.Accounts do
   @moduledoc """
-  Functions for working with user-related data structures.
+  The Accounts context.
   """
 
-  alias Core.Accounts.User
+  import Ecto.Query, warn: false
   alias Core.Repo
 
-  import Ecto.Query
+  alias Core.Accounts.Account
 
-  @spec users() :: list(User.t())
-  def users do
-    from(user in User)
-    |> order_by(:email)
-    |> Repo.all()
+  def list_accounts do
+    Repo.all(Account)
   end
 
-  @spec user(id :: pos_integer()) :: Repo.select_result_t(User.t())
-  def user(id) when is_integer(id), do: Repo.get_record(User, id)
+  def get_account!(id), do: Repo.get!(Account, id)
 
-  @spec create_user(attrs :: map()) :: Repo.modify_result_t(User.t())
-  def create_user(%{} = attrs), do: User.create_changeset(attrs) |> Repo.insert()
-
-  @spec update_user(User.t(), attrs :: map()) :: Repo.modify_result_t(User.t())
-  def update_user(%User{} = user, %{} = attrs) do
-    User.update_changeset(user, attrs) |> Repo.update()
+  def create_account(attrs \\ %{}) do
+    %Account{}
+    |> Account.changeset(attrs)
+    |> Repo.insert()
   end
 
-  @spec delete_user(User.t()) :: Repo.modify_result_t(User.t())
-  def delete_user(%User{} = user), do: Repo.delete(user)
+  def update_account(%Account{} = account, attrs) do
+    account
+    |> Account.changeset(attrs)
+    |> Repo.update()
+  end
+
+  def delete_account(%Account{} = account) do
+    Repo.delete(account)
+  end
+
+  def change_account(%Account{} = account, attrs \\ %{}) do
+    Account.changeset(account, attrs)
+  end
 end

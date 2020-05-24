@@ -21,6 +21,10 @@ defmodule Admin.Router do
 
     get "/login", SessionController, :new
 
+    scope "/telegram" do
+      get "/accounts", TelegramController, :accounts
+    end
+
     resources "/sessions", SessionController, only: [:create, :delete]
   end
 
