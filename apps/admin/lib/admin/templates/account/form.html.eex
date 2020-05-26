@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card-header card-header-primary card-header-icon">
+        <div class="card-icon">
+        <i class="material-icons">contacts</i>
+        </div>
+        <h4 class="card-title">New account</h4>
+    </div>
+    <div class="card-body">
+        <%= form_for @changeset,  Routes.account_path(@conn, :create), [class: 'form-horizontal', id: 'accounts-new-form'], fn f -> %>
+        <%= if f.errors != [] do %>
+            <div class="alert alert-danger">
+            <p>Oops, something went wrong! Please check the errors below:</p>
+            </div>
+        <% end %>
+        <div class="row">
+            <label class="col-md-3 col-form-label">Phone</label>
+            <div class="col-md-9">
+            <div class="form-group has-default bmd-form-group">
+                <%= text_input f, :phone, class: "form-control", placeholder: "+7**********" %>
+                <%= error_tag f, :phone %>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-md-3 col-form-label">Api id</label>
+            <div class="col-md-9">
+            <div class="form-group has-default bmd-form-group">
+                <%= text_input f, :api_id, class: "form-control" %>
+                <%= error_tag f, :api_id %>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-md-3 col-form-label">Api hash</label>
+            <div class="col-md-9">
+            <div class="form-group has-default bmd-form-group">
+                <%= text_input f, :api_hash, class: "form-control" %>
+            </div>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>

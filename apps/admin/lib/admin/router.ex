@@ -5,6 +5,7 @@ defmodule Admin.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
+    plug :fetch_live_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug Admin.CurrentUserPlug
@@ -23,9 +24,12 @@ defmodule Admin.Router do
 
     scope "/telegram" do
       get "/accounts", TelegramController, :accounts
+
+      post "/accounts", AccountController, :create
     end
 
     resources "/sessions", SessionController, only: [:create, :delete]
+
   end
 
   # Other scopes may use custom stacks.

@@ -19,7 +19,7 @@ config :admin, Admin.Endpoint,
   secret_key_base: "BawUwRDJJmZbxtP2gslqTBXPCm0KbZRpRCCsDwKnQD8nTzqLjOEVA2GkHwqLlkSD",
   render_errors: [view: Admin.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Admin.PubSub,
-  live_view: [signing_salt: "MAIko8Xh"]
+  live_view: [signing_salt: "FsquEFxMk2X/7r9u4vqY+KJ13TiMnwaR"]
 
 # Configures Elixir's Logger
 config :logger, :console,

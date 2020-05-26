@@ -2,6 +2,7 @@
 <html lang="en" class="perfect-scrollbar-off">
   <%= render "head.html", conn: @conn %>
   <body>
+    <%= render "scripts.html", conn: @conn %>
     <div class="wrapper">
       <div class="sidebar" data-color="rose" data-background-color="black" data-image="/images/sidebar-1.jpg">
         <%= render "logo.html", conn: @conn %>
@@ -20,6 +21,5 @@
       </div>
     </div>
     <%= render "settings.html", conn: @conn %>
-    <%= render "scripts.html", conn: @conn %>
   </body>
 </html>

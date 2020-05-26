@@ -39,8 +39,10 @@ defmodule Admin.MixProject do
       {:core, in_umbrella: true},
       {:phoenix, "~> 1.5.1"},
       {:phoenix_html, "~> 2.14"},
+      {:phoenix_live_view, "~> 0.12.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_dashboard, "~> 0.2"},
+      {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_ecto, "~> 4.1"},
       {:plug_cowboy, "~> 2.2"},
       {:ecto_sql, "~> 3.4"},
@@ -52,7 +54,9 @@ defmodule Admin.MixProject do
       {:font_awesomex, "~> 4.0"},
       {:idicon, "~> 0.2"},
       {:inflex, "~> 1.7.0" },
-      {:html_sanitize_ex, "~> 1.0.0"}
+      {:html_sanitize_ex, "~> 1.0.0"},
+      {:floki, ">= 0.0.0", only: :test},
+      {:uuid, "~> 1.1"}
     ]
   end
 end

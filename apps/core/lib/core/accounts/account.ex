@@ -21,9 +21,9 @@ defmodule Core.Accounts.Account do
   end
 
   @doc false
-  def changeset(account, attrs) do
+  def changeset(account, params \\ %{}) do
     account
-    |> cast(attrs, [:phone, :state, :username, :error, :api_id, :api_hash, :is_enable, :is_working, :pid, :verify_at, :active_at, :user_id])
+    |> cast(params, [:phone, :api_id, :api_hash])
     |> validate_required([:phone, :api_id, :api_hash, :user_id])
   end
 end

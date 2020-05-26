@@ -2,62 +2,106 @@
     <div class="container-fluid">
         <div class="row">
         <div class="col-md-12">
-            <div class="card">
-            <div class="card-header card-header-primary card-header-icon">
-                <div class="card-icon">
-                <i class="material-icons">contacts</i>
-                </div>
-                <h4 class="card-title"></h4>
-            </div>
-            <div class="card-body">
-                <div class="toolbar">
-                <!--        Here you can write extra buttons/actions for the toolbar              -->
-                </div>
-                <div class="material-datatables">
-                <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Date</th>
-                        <th class="disabled-sorting text-right">Actions</th>
-                    </tr>
-                    </thead>
-                    <tfoot>
-                    <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th class="text-right">Actions</th>
-                    </tr>
-                    </tfoot>
-                    <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td class="text-right">
-                        <a href="#" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a>
-                        <a href="#" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
-                        <a href="#" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">close</i></a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                </div>
-            </div>
-            <!-- end content-->
-            </div>
-            <!--  end card  -->
+            <%= live_render(@conn, Admin.AccountLive, accounts: @accounts) %>
         </div>
         <!-- end col-md-12 -->
         </div>
         <!-- end row -->
     </div>
 </div>
+
+<script>
+component = '<%= javascript_escape render(Admin.AccountView, "form.html", conn: @conn, changeset: @changeset) %>'
+var CSRF_TOKEN = <%= raw Poison.encode!(Plug.CSRFProtection.get_csrf_token()) %>;
+const newAccount = () =>
+    swal({
+    html: component,
+    showCancelButton: true,
+    confirmButtonClass: 'btn btn-success',
+    cancelButtonClass: 'btn btn-danger',
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    buttonsStyling: false,
+    confirmButtonText: 'Create',
+    cancelButtonText: 'Cancel',
+    showLoaderOnConfirm: true,
+    preConfirm: () => {
+      return fetch('<%= Routes.account_path(@conn, :create) %>', {
+            body: $('#accounts-new-form').serialize(),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                "X-CSRF-Token": CSRF_TOKEN,
+            },
+            method: "post",
+      })
+      .then(response => console.log(response.json()))
+      .catch(() => {
+          console.log("23432")
+        Swal.insertQueueStep({
+          icon: 'error',
+          title: 'Unable to get your public IP'
+        })
+      })
+    }
+    /*
+    inputValidator: (value) => {
+        return new Promise((resolve) => {
+            l = $("input[name='account[phone]']")
+            console.log(l)
+            if (value === 'oranges') {
+                resolve()
+            } else {
+                resolve('You need to select oranges :)')
+            }
+        })
+    },
+    preConfirm: () => {
+        return fetch(ipAPI)
+        .then(response => response.json())
+        .then(data => Swal.insertQueueStep(data.ip))
+        .catch(() => {
+            Swal.insertQueueStep({
+            icon: 'error',
+            title: 'Unable to get your public IP'
+            })
+        })
+    }
+    */
+})
+/*
+.then(function(result) {
+    if(result["value"]) {
+        $('#input-field').val()
+        swal({
+            type: 'success',
+            html: 'You entered: <strong>' +
+            $('#input-field').val() +
+            '</strong>',
+            confirmButtonClass: 'btn btn-success',
+            buttonsStyling: false
+        })
+    }
+})
+*/
+
+const newButton = document.getElementById('accounts-new');
+newButton.addEventListener('click', newAccount, false);
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  onOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Toast.fire({
+  type: 'success',
+  title: 'Signed in successfully'
+})
+</script>
+

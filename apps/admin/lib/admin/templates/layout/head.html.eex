@@ -5,10 +5,14 @@
   <title>Let's get work</title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'>
   <link rel="icon" type="image/png" href="<%= Routes.static_path(@conn, "/images/favicon.png") %>">
+  <%= csrf_meta_tag() %>
+
   <%= if current_user = @conn.assigns[:current_user] do %>
     <%= tag :meta, name: "channel_token", content: Phoenix.Token.sign(@conn, "user", current_user.id) %>
   <% end %>
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="<%= Routes.static_path(@conn, "/css/app.css") %>">
+
+  <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
 </head>

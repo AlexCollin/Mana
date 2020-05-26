@@ -8,29 +8,46 @@ defmodule Core.Accounts do
 
   alias Core.Accounts.Account
 
+  @topic inspect(__MODULE__)
+
+  def subscribe do
+    Phoenix.PubSub.subscribe(Core.PubSub, @topic)
+  end
+
   def list_accounts do
     Repo.all(Account)
   end
 
   def get_account!(id), do: Repo.get!(Account, id)
 
-  def create_account(attrs \\ %{}) do
+  def create_account(attrs) do
     %Account{}
     |> Account.changeset(attrs)
     |> Repo.insert()
+    |> broadcast_change([:account, :created])
   end
 
   def update_account(%Account{} = account, attrs) do
     account
     |> Account.changeset(attrs)
     |> Repo.update()
+    |> broadcast_change([:account, :updated])
   end
 
   def delete_account(%Account{} = account) do
-    Repo.delete(account)
+    account
+    |> Repo.delete
+    |> broadcast_change([:account, :deleted])
   end
 
   def change_account(%Account{} = account, attrs \\ %{}) do
     Account.changeset(account, attrs)
   end
+
+  defp broadcast_change(result, event) do
+    Phoenix.PubSub.broadcast(Core.PubSub, @topic, {__MODULE__, event, result})
+    {:ok, result}
+  end
+
+
 end

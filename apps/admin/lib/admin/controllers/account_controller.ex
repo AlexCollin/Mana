@@ -1,15 +1,22 @@
-defmodule Admin.TelegramController do
+defmodule Admin.AccountController do
   use Admin, :controller
 
+  plug :scrub_params, "account" when action in [:create, :update]
   plug :authorize_user
   plug :set_authorization_flag
 
-  alias Core.Accounts
+  alias Core.Accounts.Account
+  alias Core.Repo
 
-  def accounts(conn, _params) do
-    accounts = Accounts.list_accounts()
-    changeset = Accounts.Account.changeset(%Accounts.Account{})
-    render(conn, "accounts.html", accounts: accounts, changeset: changeset)
+  def create(conn, %{"account" => account_params}) do
+    changeset = Account.changeset(%Account{}, account_params)
+
+    case Repo.insert(changeset) do
+      {:ok, account} ->
+        json conn |> put_status(:created), account
+      {:error, _changeset} ->
+        json conn |> put_status(:bad_request), %{errors: ["unable to create account"] }
+    end
   end
 
   defp is_authorized_user?(conn) do
