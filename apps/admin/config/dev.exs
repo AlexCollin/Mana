@@ -52,7 +52,10 @@ config :admin, Admin.Endpoint,
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/admin/(live|views)/.*(ex)$",
-      ~r"lib/admin/templates/.*(eex)$"
+      ~r"lib/admin/templates/.*(eex)$",
+      ~r{lib/admin/views/.*(ex)$},
+      ~r{lib/admin/templates/.*(eex)$},
+      ~r{lib/admin/live/.*(ex)$}
     ]
   ]
 

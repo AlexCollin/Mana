@@ -24,8 +24,11 @@ defmodule Admin.Router do
 
     scope "/telegram" do
       get "/accounts", TelegramController, :accounts
-
-      post "/accounts", AccountController, :create
+      scope "/accounts" do
+        live "/", AccountLive.Index
+        live "/new", AccountLive.New
+        live "/:id/edit", AccountLive.Edit
+      end
     end
 
     resources "/sessions", SessionController, only: [:create, :delete]

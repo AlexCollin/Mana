@@ -1,15 +1,15 @@
 defmodule Admin.TelegramController do
   use Admin, :controller
 
+  import Ecto
+
   plug :authorize_user
   plug :set_authorization_flag
 
-  alias Core.Accounts
+  alias Core.{Accounts, Accounts.Account}
 
   def accounts(conn, _params) do
-    accounts = Accounts.list_accounts()
-    changeset = Accounts.Account.changeset(%Accounts.Account{})
-    render(conn, "accounts.html", accounts: accounts, changeset: changeset)
+    render(conn, "accounts.html")
   end
 
   defp is_authorized_user?(conn) do
@@ -31,5 +31,6 @@ defmodule Admin.TelegramController do
   defp set_authorization_flag(conn, _opts) do
     assign(conn, :author_or_admin, is_authorized_user?(conn))
   end
+
 
 end

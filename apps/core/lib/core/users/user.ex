@@ -12,6 +12,8 @@ defmodule Core.Users.User do
 
     belongs_to :role, Core.Role
 
+    has_many :accounts, Core.Accounts.Account
+
     # Virtual Fields
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true

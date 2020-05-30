@@ -10,7 +10,7 @@
     <div class="card-body">
         <div class="toolbar">
             <div class="text-right">
-            <button class="btn btn-primary btn-round btn-fab" id="accounts-new">
+            <button class="btn btn-primary btn-round btn-fab" id="accounts-add-button" >
                 <i class="material-icons">add</i>
             </button>
             </div>
@@ -44,11 +44,17 @@
             <tr>
                 <td><%= account.phone %></td>
                 <td><%= account.state %></td>
-                <td><%= account.is_enabled %></td>
+                <td><%= account.is_enable %></td>
                 <td><%= account.is_working %></td>
                 <td><%= account.pid %></td>
                 <td><%= account.active_at %></td>
                 <td class="text-right">
+                <%= link "Edit", to: Routes.live_path(@socket, Admin.AccountLive.Edit, account) %>
+                <%= link "Delete", to: '#',
+                    phx_click: "delete_account",
+                    phx_value: account.id,
+                    data: [confirm: "Are you sure?"] %>
+
                 <a href="#" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a>
                 <a href="#" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
                 <a href="#" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">close</i></a>
@@ -62,3 +68,10 @@
 <!-- end content-->
 </div>
 
+<%= live_component @socket, Admin.ComponentLive.Modal,
+    id: :accounts_new_live,
+    title: "New Account",
+    cancel_button: true,
+    submit_button: true do %>
+ <%= live_render @socket, Admin.AccountLive.Form, id: :accounts_new_live_form %>
+<% end %>

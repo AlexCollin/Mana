@@ -24,7 +24,6 @@ defmodule Core.Accounts do
     %Account{}
     |> Account.changeset(attrs)
     |> Repo.insert()
-    |> broadcast_change([:account, :created])
   end
 
   def update_account(%Account{} = account, attrs) do
@@ -44,7 +43,7 @@ defmodule Core.Accounts do
     Account.changeset(account, attrs)
   end
 
-  defp broadcast_change(result, event) do
+  def broadcast_change(result, event) do
     Phoenix.PubSub.broadcast(Core.PubSub, @topic, {__MODULE__, event, result})
     {:ok, result}
   end

@@ -7,9 +7,6 @@
 # General application configuration
 use Mix.Config
 
-config :admin,
-  namespace: Admin
-
 # config :admin,
 #   ecto_repos: [Core.Repo]
 

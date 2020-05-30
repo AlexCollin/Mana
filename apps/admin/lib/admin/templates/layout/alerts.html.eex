@@ -1,14 +1,32 @@
+ <script>
+ const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  onOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+ </script>
+
  <%= if flash = get_flash(@conn, :info) do %>
       <script>
-        message = '<%= flash %>'
-        showNotification("success",message)
+        Toast.fire({
+          type: 'success',
+          title: '<%= flash %>'
+        })
       </script>
   <% end %>
 
   <%= if flash = get_flash(@conn, :error) do %>
       <script>
-        message = '<%= flash %>'
-        showNotification("danger",message)
+        Toast.fire({
+          type: 'danger',
+          title: '<%= flash %>'
+        })
       </script>
   <% end %>
 

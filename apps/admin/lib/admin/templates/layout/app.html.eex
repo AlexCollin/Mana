@@ -17,6 +17,8 @@
         <div class="content">
           <%= @inner_content %>
         </div>
+
+
         <%= render "footer.html", conn: @conn %>
       </div>
     </div>

@@ -39,8 +39,8 @@ defmodule Admin.Breadcrumbs do
     "<span class='active'>#{name}</span>"
   end
 
-  defp link_item(directories, name) do
-    path = Enum.join(directories, "/")
+  defp link_item(_directories, name) do
+    # path = Enum.join(directories, "/")
     # "<span><a href='/#{path}'>#{name}</a></span>"
     "<span>#{name}</span> / "
   end

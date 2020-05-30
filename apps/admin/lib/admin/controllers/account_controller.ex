@@ -1,11 +1,15 @@
 defmodule Admin.AccountController do
   use Admin, :controller
 
+  import Ecto
+
+  plug :assign_user
   plug :scrub_params, "account" when action in [:create, :update]
   plug :authorize_user
   plug :set_authorization_flag
 
-  alias Core.Accounts.Account
+  alias Core.{Accounts, Accounts.Account}
+  alias Core.Users
   alias Core.Repo
 
   def create(conn, %{"account" => account_params}) do
@@ -33,6 +37,21 @@ defmodule Admin.AccountController do
       |> redirect(to: Routes.session_path(conn, :new))
       |> halt
     end
+  end
+
+  defp assign_user(conn, _opts) do
+    user = get_session(conn, :current_user)
+        case Users.get_user!(user.id) do
+          nil  -> invalid_user(conn)
+          user -> assign(conn, :user, user)
+        end
+  end
+
+  defp invalid_user(conn) do
+    conn
+    |> put_flash(:error, "Invalid user!")
+    |> redirect(to: Routes.session_path(conn, :new))
+    |> halt
   end
 
   defp set_authorization_flag(conn, _opts) do

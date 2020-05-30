@@ -12,7 +12,7 @@ defmodule Admin.Application do
       # Start the Telemetry supervisor
       Admin.Telemetry,
       # Start the PubSub system
-      {Phoenix.PubSub, name: Admin.PubSub},
+      {Phoenix.PubSub, [name: Admin.PubSub, adapter: Phoenix.PubSub.PG2]},
       # Start the Endpoint (http/https)
       Admin.Endpoint
       # Start a worker by calling: Admin.Worker.start_link(arg)

@@ -12,18 +12,20 @@ defmodule Core.Accounts.Account do
     field :is_enable, :boolean, default: false
     field :is_working, :boolean, default: false
     field :pid, :integer, default: 0
-    field :verify_at, :utc_datetime
-    field :active_at, :utc_datetime
+    field :verify_at, :naive_datetime
+    field :active_at, :naive_datetime
 
     belongs_to :user, Core.Users.User
 
     timestamps()
   end
 
+  @phone ~r/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/
+
   @doc false
   def changeset(account, params \\ %{}) do
     account
     |> cast(params, [:phone, :api_id, :api_hash])
-    |> validate_required([:phone, :api_id, :api_hash, :user_id])
+    |> validate_required([:phone, :api_id, :api_hash])
   end
 end
