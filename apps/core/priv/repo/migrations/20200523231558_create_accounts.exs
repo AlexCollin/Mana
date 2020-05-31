@@ -7,7 +7,7 @@ defmodule Core.Repo.Migrations.CreateAccounts do
       add(:state, :string, null: true)
       add(:username, :string, null: true)
       add(:error, :text, null: true)
-      add(:api_id, :integer, null: false)
+      add(:api_id, :string, null: false)
       add(:api_hash, :string, null: false)
       add(:user_id, references(:users))
       add(:is_enable, :boolean, default: false)

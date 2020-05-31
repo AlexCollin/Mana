@@ -21,12 +21,29 @@ defmodule Admin do
     quote do
       use Phoenix.Controller, namespace: Admin
 
-      import Phoenix.LiveView.Controller
       import Plug.Conn
       import Admin.Gettext
 
       alias Admin.Router.Helpers, as: Routes
 
+    end
+  end
+
+  def live_component do
+    quote do
+      use Phoenix.LiveComponent
+
+      unquote(view_helpers())
+    end
+  end
+
+  def live_view do
+
+    quote do
+      use Phoenix.LiveView
+
+      # Include shared imports and aliases for views
+      unquote(view_helpers())
     end
   end
 
@@ -44,22 +61,14 @@ defmodule Admin do
     end
   end
 
-  def live_component do
-    quote do
-      use Phoenix.LiveComponent
-
-      unquote(view_helpers())
-    end
-  end
-
   def router do
     quote do
       use Phoenix.Router
 
-      import Plug.Conn
-      import Phoenix.Controller
       import Phoenix.LiveView.Router
+
     end
+
   end
 
   def channel do

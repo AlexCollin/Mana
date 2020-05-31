@@ -7,6 +7,7 @@
             List of accounts
         </h4>
     </div>
+    <span phx-click="test">321321312312 </span>
     <div class="card-body">
         <div class="toolbar">
             <div class="text-right">
@@ -49,7 +50,6 @@
                 <td><%= account.pid %></td>
                 <td><%= account.active_at %></td>
                 <td class="text-right">
-                <%= link "Edit", to: Routes.live_path(@socket, Admin.AccountLive.Edit, account) %>
                 <%= link "Delete", to: '#',
                     phx_click: "delete_account",
                     phx_value: account.id,
@@ -67,11 +67,15 @@
     </div>
 <!-- end content-->
 </div>
-
 <%= live_component @socket, Admin.ComponentLive.Modal,
     id: :accounts_new_live,
     title: "New Account",
+    open_button: true,
     cancel_button: true,
-    submit_button: true do %>
- <%= live_render @socket, Admin.AccountLive.Form, id: :accounts_new_live_form %>
+    submit_button: true,
+    state: "CLOSED",
+    action: nil  do %>
+    <%= live_render @socket, Admin.AccountLive.Form,
+            id: :accounts_new_live_form
+    %>
 <% end %>

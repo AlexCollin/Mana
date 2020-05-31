@@ -1,5 +1,5 @@
 defmodule Admin.ComponentLive.Modal do
-  use Phoenix.LiveComponent
+  use Admin, :live_component
 
   @defaults %{
     state: "CLOSED",
@@ -18,15 +18,10 @@ defmodule Admin.ComponentLive.Modal do
     submit_button_param: nil
   }
 
-  def mount(assigns, socket) do
-    {:ok, assign(socket, Map.merge(@defaults, assigns))}
+  def mount(socket) do
+    {:ok, assign(socket, @defaults)}
   end
 
-  def update(assigns, socket) do
-    {:ok, assign(socket, Map.merge(@defaults, assigns))}
-  end
-
-  @spec render(any) :: Phoenix.LiveView.Rendered.t()
   def render(assigns) do
       ~L"""
       <%= if @open_button do %>
@@ -74,31 +69,42 @@ defmodule Admin.ComponentLive.Modal do
       """
   end
 
-  def handle_event("cancel-button-click", _params,
-      %{
-          assigns: %{
-            cancel_button_action: cancel_button_action,
-            cancel_button_param: cancel_button_param
-          }
-        } = socket
-      ) do
-    send(self(),{__MODULE__,:button_clicked,%{action: cancel_button_action, param: cancel_button_param}})
-
+  def handle_info(params, socket) do
+    IO.puts("HI Modal #{inspect(params)}")
     {:noreply, socket}
   end
+  # def handle_event("close", params, socket) do
+  #   IO.puts(inspect(params))
 
-  def handle_event("submit-button-click",_params,
-      %{
-          assigns: %{
-            submit_button_action: submit_button_action,
-            submit_button_param: submit_button_param
-          }
-        } = socket
-      ) do
-    send(self(),{__MODULE__,:button_clicked,%{action: submit_button_action, param: submit_button_param}})
+  #   {:noreply, socket}
+  # end
 
-    {:noreply, socket}
-  end
+  # def handle_event("cancel-button-click", _params,
+  #     %{
+  #         assigns: %{
+  #           cancel_button_action: cancel_button_action,
+  #           cancel_button_param: cancel_button_param
+  #         }
+  #       } = socket
+  #     ) do
+  #   send(self(),{__MODULE__,:button_clicked,%{action: cancel_button_action, param: cancel_button_param}})
+
+  #   {:noreply, socket}
+  # end
+
+  # def handle_event("submit-button-click",_params,
+  #     %{
+  #         assigns: %{
+  #           submit_button_action: submit_button_action,
+  #           submit_button_param: submit_button_param
+  #         }
+  #       } = socket
+  #     ) do
+  #   send(self(),{__MODULE__,:button_clicked,%{action: submit_button_action, param: submit_button_param}})
+
+  #   {:noreply, socket}
+  # end
+
 
   # def handle_info(
   #     {Admin.ComponentLive.Modal,

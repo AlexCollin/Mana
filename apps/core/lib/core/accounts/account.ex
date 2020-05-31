@@ -7,7 +7,7 @@ defmodule Core.Accounts.Account do
     field :state, :string, default: ""
     field :username, :string, default: ""
     field :error, :string, default: ""
-    field :api_id, :integer
+    field :api_id, :string
     field :api_hash, :string
     field :is_enable, :boolean, default: false
     field :is_working, :boolean, default: false
@@ -28,4 +28,11 @@ defmodule Core.Accounts.Account do
     |> cast(params, [:phone, :api_id, :api_hash])
     |> validate_required([:phone, :api_id, :api_hash])
   end
+
+  def changeset_assoc(%Core.Accounts.Account{} = account, attrs) do
+    account
+    |> changeset(attrs)
+    |> cast_assoc(:user, required: true)
+  end
+
 end

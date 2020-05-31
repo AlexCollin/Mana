@@ -15,6 +15,6 @@ defmodule Admin.ComponentView do
   def live_modal(socket, component, opts) do
     path = Keyword.fetch!(opts, :return_to)
     modal_opts = [id: :modal, return_to: path, component: component, opts: opts]
-    live_component(socket, Admin.ComponentLive.ModalComponent, modal_opts)
+    live_component(socket, Admin.ComponentLive.Modal, modal_opts)
   end
 end

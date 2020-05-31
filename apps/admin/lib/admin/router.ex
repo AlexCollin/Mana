@@ -24,10 +24,9 @@ defmodule Admin.Router do
 
     scope "/telegram" do
       get "/accounts", TelegramController, :accounts
-      scope "/accounts" do
-        live "/", AccountLive.Index
-        live "/new", AccountLive.New
-        live "/:id/edit", AccountLive.Edit
+      scope "/accounts", AccountLive do
+        live "/new", Form
+        live "/:id/edit", Form
       end
     end
 

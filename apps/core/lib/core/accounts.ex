@@ -24,6 +24,7 @@ defmodule Core.Accounts do
     %Account{}
     |> Account.changeset(attrs)
     |> Repo.insert()
+    |> broadcast_change([:account, :created])
   end
 
   def update_account(%Account{} = account, attrs) do
