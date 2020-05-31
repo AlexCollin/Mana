@@ -4,11 +4,11 @@ defmodule Admin.Router do
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
-    plug :fetch_flash
     plug :fetch_live_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug Admin.CurrentUserPlug
+    plug :put_root_layout, {Admin.LayoutView, :root}
+    # plug Admin.CurrentUserPlug
   end
 
   pipeline :api do
@@ -18,19 +18,22 @@ defmodule Admin.Router do
   scope "/", Admin do
     pipe_through :browser
 
-    get "/", MainController, :index
+    live "/", MainLive.Index, :index
 
-    get "/login", SessionController, :new
+    # get "/login", SessionController, :new
 
     scope "/telegram" do
-      get "/accounts", TelegramController, :accounts
+      live "/accounts", AccountLive.Index, :index
       scope "/accounts", AccountLive do
-        live "/new", Form
-        live "/:id/edit", Form
+        live "/new", Index, :new
+        live "/:id/edit", Index, :edit
+
+        live "/:id", Show, :show
+        live "/:id/show/edit", Show, :edit
       end
     end
 
-    resources "/sessions", SessionController, only: [:create, :delete]
+    # resources "/sessions", SessionController, only: [:create, :delete]
 
   end
 

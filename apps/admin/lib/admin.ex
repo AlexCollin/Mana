@@ -29,24 +29,6 @@ defmodule Admin do
     end
   end
 
-  def live_component do
-    quote do
-      use Phoenix.LiveComponent
-
-      unquote(view_helpers())
-    end
-  end
-
-  def live_view do
-
-    quote do
-      use Phoenix.LiveView
-
-      # Include shared imports and aliases for views
-      unquote(view_helpers())
-    end
-  end
-
   def view do
     quote do
       use Phoenix.View,
@@ -61,14 +43,32 @@ defmodule Admin do
     end
   end
 
+  def live_component do
+    quote do
+      use Phoenix.LiveComponent
+
+      unquote(view_helpers())
+    end
+  end
+
+  def live_view do
+    quote do
+      use Phoenix.LiveView,
+        layout: {Admin.LayoutView, "live.html"}
+
+      # Include shared imports and aliases for views
+      unquote(view_helpers())
+    end
+  end
+
   def router do
     quote do
       use Phoenix.Router
 
+      import Plug.Conn
+      import Phoenix.Controller
       import Phoenix.LiveView.Router
-
     end
-
   end
 
   def channel do
@@ -83,7 +83,9 @@ defmodule Admin do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
+       # Import LiveView helpers (live_render, live_component, live_patch, etc)
       import Phoenix.LiveView.Helpers
+      import Admin.LiveHelpers
 
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View

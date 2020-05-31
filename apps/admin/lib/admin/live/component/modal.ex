@@ -2,83 +2,77 @@ defmodule Admin.ComponentLive.Modal do
   use Admin, :live_component
 
   @defaults %{
-    state: "CLOSED",
-    action: nil,
-    title: "Modal title",
-    open_button: true,
-    open_button_class: "btn btn-primary btn-round btn-fab",
-    open_button_text: "",
-    cancel_button: false,
-    cancel_button_text: "Cancel",
-    cancel_button_action: nil,
-    cancel_button_param: nil,
-    submit_button: false,
-    submit_button_text: "OK",
-    submit_button_action: nil,
-    submit_button_param: nil
+    title: nil,
+    buttons: []
   }
 
+  @impl true
   def mount(socket) do
     {:ok, assign(socket, @defaults)}
   end
 
+  @impl true
   def render(assigns) do
       ~L"""
-      <%= if @open_button do %>
-        <button class="<%= @open_button_class %>" data-toggle="modal" data-target="#modal_<%= @id %>">
-          <i class="material-icons">add</i> <%= @open_button_text %>
-        </button>
-      <% end %>
-      <div class="modal fade" phx-hook="InitModal" id="modal_<%= @id %>" tabindex="-1" role="dialog" aria-labelledby="modal_<%= @id %>" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <%= if @title != nil do %>
-                <h5 class="modal-title" id="<%= @id %>_title" ><%= @title %></h5>
-              <% end %>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <!-- CONTENT -->
-              <%= @inner_content.([]) %>
-            </div>
-            <div class="modal-footer">
-              <%= if @cancel_button do %>
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-dismiss="modal"
-                  phx-click="cancel-button-click"
-                  phx-target="#modal_<%= @id %>"
-                ><%= @cancel_button_text %></button>
-              <% end %>
-              <%= if @submit_button do %>
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  phx-click="submit-button-click"
-                  phx-target="#modal_<%= @id %>"
-                ><%= @submit_button_text %></button>
-              <% end %>
+        <div class="modal fade"
+          id="modal_<%= @id %>"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="modal_<%= @id %>"
+          aria-hidden="true"
+          phx-hook="InitModal"
+          phx-capture-click="close"
+          phx-window-keydown="close"
+          phx-key="escape"
+          phx-target="#modal_<%= @id %>"
+          phx-page-loading
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <%= if @title != nil do %>
+                  <h5 class="modal-title" id="<%= @id %>_title" ><%= @title %></h5>
+                <% end %>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <%= live_patch raw("&times;"), to: @return_to, class: "close" %>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <%= live_component @socket, @component, @opts %>
+              </div>
+              <div class="modal-footer">
+                <%= for button <- @buttons do %>
+                    <button
+                      type="button"
+                      <%= if button[:class] != nil do %>
+                        class="btn <%= button[:class] %>"
+                        <% else %>
+                        class="btn btn-primary btn-round btn-fab"
+                      <% end %>
+                      <%= if button[:dismiss] != nil do %>
+                        data-dismiss="modal"
+                      <% end %>
+                      <%= if button[:click] != nil do %>
+                        phx-click="<%= button[:click] %>"
+                      <% end %>
+                      <%= if button[:target] != nil do %>
+                        phx-target="<%= button[:target] %>"
+                      <% end %>
+                    >
+                    <%= button[:text] %>
+                    </button>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       """
   end
 
-  def handle_info(params, socket) do
-    IO.puts("HI Modal #{inspect(params)}")
-    {:noreply, socket}
+  @impl true
+  def handle_event("close", _, socket) do
+    {:noreply, push_patch(socket, to: socket.assigns.return_to)}
   end
-  # def handle_event("close", params, socket) do
-  #   IO.puts(inspect(params))
-
-  #   {:noreply, socket}
-  # end
-
   # def handle_event("cancel-button-click", _params,
   #     %{
   #         assigns: %{

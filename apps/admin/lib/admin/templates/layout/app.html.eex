@@ -1,27 +1,32 @@
-<!DOCTYPE html>
-<html lang="en" class="perfect-scrollbar-off">
-  <%= render "head.html", conn: @conn %>
-  <body>
-    <%= render "scripts.html", conn: @conn %>
-    <div class="wrapper">
-      <div class="sidebar" data-color="rose" data-background-color="black" data-image="/images/sidebar-1.jpg">
-        <%= render "logo.html", conn: @conn %>
-        <div class="sidebar-wrapper">
-          <%= render "user.html", conn: @conn %>
-          <%= render "navigation.html", conn: @conn %>
-        </div>
-      </div>
-      <div class="main-panel">
-        <%= render "toolbar.html", conn: @conn %>
-        <%= render "alerts.html", conn: @conn %>
-        <div class="content">
-          <%= @inner_content %>
-        </div>
+ <script>
+ const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  onOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+ </script>
 
+ <%= if flash = get_flash(@conn, :info) do %>
+      <script>
+        Toast.fire({
+          type: 'success',
+          title: '<%= flash %>'
+        })
+      </script>
+  <% end %>
 
-        <%= render "footer.html", conn: @conn %>
-      </div>
-    </div>
-    <%= render "settings.html", conn: @conn %>
-  </body>
-</html>
+  <%= if flash = get_flash(@conn, :error) do %>
+      <script>
+        Toast.fire({
+          type: 'danger',
+          title: '<%= flash %>'
+        })
+      </script>
+  <% end %>
+<%= @inner_content %>

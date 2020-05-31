@@ -20,7 +20,7 @@ defmodule Core.Accounts do
 
   def get_account!(id), do: Repo.get!(Account, id)
 
-  def create_account(attrs) do
+  def create_account(attrs \\ %{}) do
     %Account{}
     |> Account.changeset(attrs)
     |> Repo.insert()
@@ -34,6 +34,7 @@ defmodule Core.Accounts do
     |> broadcast_change([:account, :updated])
   end
 
+  @spec delete_account(Core.Accounts.Account.t()) :: {:ok, any}
   def delete_account(%Account{} = account) do
     account
     |> Repo.delete

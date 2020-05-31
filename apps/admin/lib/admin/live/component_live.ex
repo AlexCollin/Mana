@@ -6,5 +6,4 @@ defmodule Admin.ComponentLive do
     """
   end
 
-
 end

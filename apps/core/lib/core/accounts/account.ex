@@ -22,17 +22,17 @@ defmodule Core.Accounts.Account do
 
   @phone ~r/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/
 
-  @doc false
-  def changeset(account, params \\ %{}) do
-    account
-    |> cast(params, [:phone, :api_id, :api_hash])
+
+  def changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, [:phone, :api_id, :api_hash, :user_id])
     |> validate_required([:phone, :api_id, :api_hash])
   end
 
   def changeset_assoc(%Core.Accounts.Account{} = account, attrs) do
     account
     |> changeset(attrs)
-    |> cast_assoc(:user, required: true)
+    |> cast_assoc(:user, required: false)
   end
 
 end

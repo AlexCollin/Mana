@@ -4,7 +4,7 @@ defmodule Admin.MixProject do
   def project do
     [
       app: :admin,
-      version: "0.1.0",
+      version: "0.2.0",
       build_path: "../../_build",
       config_path: "../../config/config.exs",
       deps_path: "../../deps",
@@ -55,8 +55,7 @@ defmodule Admin.MixProject do
       {:idicon, "~> 0.2"},
       {:inflex, "~> 1.7.0" },
       {:html_sanitize_ex, "~> 1.0.0"},
-      {:floki, ">= 0.0.0", only: :test},
-      {:uuid, "~> 1.1"}
+      {:floki, ">= 0.0.0", only: :test}
     ]
   end
 end

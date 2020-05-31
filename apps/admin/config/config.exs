@@ -7,9 +7,6 @@
 # General application configuration
 use Mix.Config
 
-# config :admin,
-#   ecto_repos: [Core.Repo]
-
 # Configures the endpoint
 config :admin, Admin.Endpoint,
   url: [host: "localhost"],

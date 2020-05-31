@@ -1,0 +1,45 @@
+
+<ul class="nav">
+  <li class="nav-item <%= if Phoenix.Controller.current_path(@conn, %{}) == "/" do "active" end%>">
+    <a class="nav-link" href="/">
+      <i class="material-icons">dashboard</i>
+      <p>Dashboard</p>
+    </a>
+  </li>
+  <li class="nav-item ">
+    <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
+      <i class="fa fa-telegram fa-2x"> </i>
+      <p> Telegram
+        <b class="caret"></b>
+      </p>
+    </a>
+    <div class="collapse <%= if Phoenix.Controller.current_path(@conn, %{}) =~ "/telegram" do "show" end%>" id="pagesExamples">
+      <ul class="nav">
+      <li class="nav-item <%= if Phoenix.Controller.current_path(@conn, %{}) == "/telegram/accounts" do "active" end%>">
+      <%= live_redirect to: Routes.account_index_path(@conn, :index), class: "nav-link" do %>
+            <span class="sidebar-mini"> <i class="material-icons">contacts</i> </span>
+            <span class="sidebar-normal"> Accounts </span>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../examples/pages/pricing.html">
+            <span class="sidebar-mini"> <i class="material-icons">android</i> </span>
+            <span class="sidebar-normal"> Bots </span>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="../examples/pages/pricing.html">
+            <span class="sidebar-mini"> <i class="material-icons">message</i> </span>
+            <span class="sidebar-normal"> Requests </span>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="../examples/pages/pricing.html">
+            <span class="sidebar-mini"> <i class="material-icons">widgets</i> </span>
+            <span class="sidebar-normal"> Apps </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </li>
+</ul>
