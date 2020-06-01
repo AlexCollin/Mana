@@ -5,15 +5,17 @@
     account: @account,
     return_to: Routes.account_index_path(@socket, :index) %>
 <% end %>
-
+<script>console.log("Index")</script>
 <div class="card">
     <div class="card-header card-header-primary card-header-icon">
         <div class="card-icon">
             <i class="material-icons">contacts</i>
         </div>
-        <%= live_patch to: Routes.account_index_path(@socket, :new), class: "btn btn-primary btn-round", style: "float: right" do %>
-                New account <i class="material-icons">add</i>
+        <div class="card-header card-header-primary card-header-icon">
+           <%= live_patch to: Routes.account_index_path(@socket, :new),  style: "float: right" do %>
+                <i class="material-icons">add</i>
             <% end %>
+        </div>
         <h4 class="card-title">
             List of accounts
         </h4>

@@ -6,6 +6,7 @@ defmodule Admin.MainLive.Index do
     {:ok, socket}
   end
 
+  @impl true
   def render(assigns) do
     Phoenix.View.render(Admin.MainView, "index.html", assigns)
   end
