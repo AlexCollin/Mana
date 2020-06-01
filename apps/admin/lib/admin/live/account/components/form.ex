@@ -89,7 +89,7 @@ defmodule Admin.AccountLive.Components.Form do
         {:noreply,
          socket
          |> put_flash(:info, "Account updated successfully")
-         |> redirect(to: socket.assigns.return_to)}
+         |> push_patch(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, :changeset, changeset)}
@@ -102,7 +102,7 @@ defmodule Admin.AccountLive.Components.Form do
         {:noreply,
          socket
          |> put_flash(:info, "Account created successfully")
-         |> redirect(to: socket.assigns.return_to)}
+         |> push_patch(to: socket.assigns.return_to)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, changeset: changeset)}

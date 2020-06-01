@@ -11,12 +11,27 @@ import NProgress from "nprogress"
 let Hooks = {}
 
 Hooks.InitModal = {
+    beforeDestroy() {
+      $(".modal-backdrop").remove()
+      $("body").removeClass("modal-open")
+      console.log("beforeDestroy")
+    },
+    // beforeUpdate() {
+    //   console.log("beforeUpdate")
+    // },
+    // updated() {
+    //   console.log("updated")
+    // },
+    // destroyed() {
+    //   console.log("destroyed")
+    // },
     mounted() {
       $(this.el).modal({keyboard: false})
-      $(document).on('hide.bs.modal', function () {
-          $(".modal-backdrop").remove()
-          $("body").removeClass("modal-open")
-      })
+      // $(document).on('hide.bs.modal', function () {
+      //     $(".modal-backdrop").remove()
+      //     $("body").removeClass("modal-open")
+      // })
+
     }
   }
 
