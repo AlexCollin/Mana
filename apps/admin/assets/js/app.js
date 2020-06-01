@@ -8,13 +8,24 @@ import LiveSocket from "phoenix_live_view"
 
 import NProgress from "nprogress"
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  onOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
 let Hooks = {}
 
 Hooks.InitModal = {
     beforeDestroy() {
       $(".modal-backdrop").remove()
       $("body").removeClass("modal-open")
-      console.log("beforeDestroy")
     },
     // beforeUpdate() {
     //   console.log("beforeUpdate")
@@ -35,6 +46,27 @@ Hooks.InitModal = {
     }
   }
 
+  Hooks.AlertInfo = {
+    mounted() {
+      let text = $(this.el).text()
+      Toast.fire({
+        type: 'success',
+        title: text
+      })
+      $(this.el).remove()
+    }
+  }
+
+  Hooks.AlertError = {
+    mounted() {
+      let text = $(this.el).text()
+      Toast.fire({
+        type: 'danger',
+        title: text
+      })
+      $(this.el).remove()
+    }
+  }
   
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 

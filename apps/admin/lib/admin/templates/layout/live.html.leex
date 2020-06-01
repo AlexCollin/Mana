@@ -1,16 +1,18 @@
-
- <%= if flash = live_flash(@flash, :info) do %>
-      <p class="alert alert-info" role="alert"
-        phx-click="lv:clear-flash"
-        phx-value-key="info"><%= flash %>
+<%= if flash = live_flash(@flash, :info) do %>
+      <p
+        style="display:none"
+        phx-value-key="info"
+        phx-hook="AlertInfo"
+        ><%= flash %>
       </p>
-  <% end %>
-
-  <%= if flash = live_flash(@flash, :error) do %>
-      <p class="alert alert-danger" role="alert"
-        phx-click="lv:clear-flash"
-        phx-value-key="error"><%= flash %>
+<% end %>
+<%= if flash = live_flash(@flash, :error) do %>
+      <p
+        style="display:none"
+        phx-value-key="error"
+        phx-hook="AlertError"
+        ><%= flash %>
       </p>
-  <% end %>
+<% end %>
 
 <%= @inner_content %>
