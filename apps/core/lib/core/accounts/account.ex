@@ -20,13 +20,14 @@ defmodule Core.Accounts.Account do
     timestamps()
   end
 
-  @phone ~r/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/
+  @phone ~r/^\+\d{1,2}?\d{3}?\d{3}\d{4}$/
 
 
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:phone, :api_id, :api_hash, :user_id])
     |> validate_required([:phone, :api_id, :api_hash])
+    |> validate_format(:phone, @phone, message: "must be as +70000000000")
   end
 
   def changeset_assoc(%Core.Accounts.Account{} = account, attrs) do

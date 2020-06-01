@@ -38,11 +38,6 @@ Hooks.InitModal = {
     // },
     mounted() {
       $(this.el).modal({keyboard: false})
-      // $(document).on('hide.bs.modal', function () {
-      //     $(".modal-backdrop").remove()
-      //     $("body").removeClass("modal-open")
-      // })
-
     }
   }
 

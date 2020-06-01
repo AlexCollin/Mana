@@ -8,5 +8,4 @@ defmodule Admin.LayoutView do
       |> raw
     end
   end
-
 end

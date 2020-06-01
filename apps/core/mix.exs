@@ -25,6 +25,9 @@ defmodule Core.MixProject do
 
   defp deps do
     [
+      {:phoenix, "~> 1.5.1"},
+      {:phoenix_pubsub, "~> 2.0"},
+      {:phoenix_ecto, "~> 4.1"},
       {:bcrypt_elixir, "~> 0.12"},
       {:comeonin, "~> 4.1"},
       {:ecto, "~> 3.4.4"},
