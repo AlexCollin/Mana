@@ -4,7 +4,7 @@ defmodule Core.Accounts.Account do
 
   schema "accounts" do
     field :phone, :string
-    field :state, :string, default: ""
+    field :state, :string, default: "created"
     field :username, :string, default: ""
     field :error, :string, default: ""
     field :api_id, :string
